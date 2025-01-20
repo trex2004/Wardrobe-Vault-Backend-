@@ -3,6 +3,7 @@ import cors from 'cors'
 import 'dotenv/config'
 import connectDB from './config/mongoConnection.js'
 import connectCloud from './config/cloudinary.js'
+import userRouter from './routes/userRoutes.js'
 
 const app = express()
 const port = process.env.PORT || 5000
@@ -11,6 +12,8 @@ connectCloud()
 
 app.use(express.json())
 app.use(cors())
+
+app.use('/api/user',userRouter)
 
 app.get('/',(req,res) => {
     res.send('Server Hello')
